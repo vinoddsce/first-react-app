@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 import Department from './components/Department';
+import StudentList from './components/StudentList';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      departmentName: "Pre-Unversity",
-      collegeName: "PESIT"
+      stdName: ''
     }
-    this.changeDepartmentName = this.changeDepartmentName.bind(this);
-    // setTimeout(() => {
-    //   this.setState({
-    //     departmentName: "PUC"
-    //   })
-    // }, 5000);
+    this.addStudent = this.addStudent.bind(this);
   }
 
-  changeDepartmentName() {
-    // this.state.departmentName = "PUC";
+  addStudent(name) {
+    console.log("App->addStudent(): ", name);
     this.setState({
-      departmentName: "PUC"
+      stdName: name
     })
   }
 
@@ -30,8 +25,11 @@ class App extends Component {
     return (
       <div className="App">
         <p>{this.props.title}</p>
-        <Department deptName={this.state.departmentName} collegeName={this.state.collegeName} />
-        <button onClick={this.changeDepartmentName}>Change</button>
+        <hr></hr>
+        <hr></hr>
+        <Department addStudent={this.addStudent} />
+        <hr></hr>
+        <StudentList stdName={this.state.stdName} />
       </div>
     );
   }
