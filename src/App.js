@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
 import Department from './components/Department';
-import StudentList from './components/StudentList';
+import StudentList from './components/student/StudentList';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      stdName: ''
+      students: []
     }
     this.addStudent = this.addStudent.bind(this);
   }
 
   addStudent(name) {
     console.log("App->addStudent(): ", name);
+
+    var temp = this.state.students;
+    temp.push(name);
+
     this.setState({
-      stdName: name
+      students: temp
     })
   }
 
@@ -29,7 +33,7 @@ class App extends Component {
         <hr></hr>
         <Department addStudent={this.addStudent} />
         <hr></hr>
-        <StudentList stdName={this.state.stdName} />
+        <StudentList students={this.state.students} />
       </div>
     );
   }

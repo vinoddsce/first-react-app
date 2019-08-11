@@ -25,9 +25,7 @@ class Department extends Component {
         console.log("Department -> render()");
         return (
             <div>
-
                 <p>College Name : {this.state.collegeName}, Department Name: {this.state.departmentName}</p>
-
                 Student Name: <input type="text" onChange={this.onNameChange} />
                 <button onClick={this.addStudentClicked}>Add</button>
             </div>

@@ -45,15 +45,22 @@
 // console.log(second);
 // console.log(others);
 
-var designation = "Coder";
-var dob = new Date();
+// var designation = "Coder";
+// var dob = new Date();
 
-var info = `Hi, 
-My 
-Name 
-Is
-Vinod, My Designation Is: 
-${designation} and Time is ${dob}`;
+// var info = `Hi, 
+// My 
+// Name 
+// Is
+// Vinod, My Designation Is: 
+// ${designation} and Time is ${dob}`;
 
-console.log(info);
+// console.log(info);
+
+
+var students = ['Vinod', 'Kumar'];
+
+students.map((name) => {
+    console.log(name)
+})
 
