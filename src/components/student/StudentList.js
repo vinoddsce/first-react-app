@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Student from './Student';
 
+import { PropTypes } from 'prop-types';
+
 class StudentList extends Component {
     constructor(props) {
         super(props);
@@ -9,16 +11,20 @@ class StudentList extends Component {
     }
     render() {
         return (
-            <div>
+            <>
                 <h1>Students: </h1>
                 {
-                    this.props.students.map((name) => {
-                        return <Student name={name} />
+                    this.props.students.map((name, index) => {
+                        return <Student name={name} key={index} />
                     })
                 }
-            </div>
+            </>
         );
     }
+}
+
+StudentList.propTypes = {
+    students: PropTypes.array
 }
 
 // const arr_fun = (param_list_optional) => {

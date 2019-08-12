@@ -31,7 +31,7 @@ class App extends Component {
         <p>{this.props.title}</p>
         <hr></hr>
         <hr></hr>
-        <Department addStudent={this.addStudent} />
+        <Department addStudent={this.addStudent} deptNumber={"100"} />
         <hr></hr>
         <StudentList students={this.state.students} />
       </div>
