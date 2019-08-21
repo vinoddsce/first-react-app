@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Department from './components/Department';
+import StudentDTO from './common/StudentDTO';
 import StudentList from './components/student/StudentList';
 
 class App extends Component {
@@ -13,11 +14,13 @@ class App extends Component {
     this.addStudent = this.addStudent.bind(this);
   }
 
-  addStudent(name) {
+  addStudent(name, course, fees) {
     console.log("App->addStudent(): ", name);
 
     var temp = this.state.students;
-    temp.push(name);
+    var std = new StudentDTO(this.state.students.length + 1, name, course, fees);
+    console.log('std', std);
+    temp.push(std);
 
     this.setState({
       students: temp

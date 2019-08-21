@@ -10,8 +10,12 @@ class Department extends Component {
             collegeName: "PESIT"
         }
         this.onNameChange = this.onNameChange.bind(this);
+        this.onCourseChange = this.onCourseChange.bind(this);
+        this.onFeesChange = this.onFeesChange.bind(this);
         this.addStudentClicked = this.addStudentClicked.bind(this);
         this.stdName = '';
+        this.stdCourse = '';
+        this.stdFees = '';
     }
 
     onNameChange(event) {
@@ -19,8 +23,18 @@ class Department extends Component {
         this.stdName = event.target.value;
     }
 
+    onCourseChange(event) {
+        console.log("Changed Value: ", event.target.value);
+        this.stdCourse = event.target.value;
+    }
+
+    onFeesChange(event) {
+        console.log("Changed Value: ", event.target.value);
+        this.stdFees = event.target.value;
+    }
+
     addStudentClicked(event) {
-        this.props.addStudent(this.stdName);
+        this.props.addStudent(this.stdName, this.stdCourse, this.stdFees);
     }
 
     render() {
@@ -29,7 +43,10 @@ class Department extends Component {
             <div>
                 <h4>Department No: {this.props.deptNumber}</h4>
                 <p>College Name : {this.state.collegeName}, Department Name: {this.state.departmentName}</p>
-                Student Name: <input type="text" onChange={this.onNameChange} />
+                Name: <input type="text" onChange={this.onNameChange} />
+                Course: <input type="text" onChange={this.onCourseChange} />
+                Fees: <input type="text" onChange={this.onFeesChange} />
+
                 <button onClick={this.addStudentClicked}>Add</button>
             </div>
         );

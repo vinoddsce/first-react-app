@@ -12,10 +12,15 @@ class StudentList extends Component {
     render() {
         return (
             <>
-                <h1>Students: </h1>
+                <h1><span style={{ padding: '0px 25px', width: '25%' }}>ID</span><span style={{ padding: '0px 25px', width: '25%' }}>Name</span><span style={{ padding: '0px 25px', width: '25%' }}>Course</span><span style={{ padding: '0px 25px', width: '25%' }}>Fees</span></h1>
                 {
-                    this.props.students.map((name, index) => {
-                        return <Student name={name} key={index} />
+                    this.props.students.map((std, index) => {
+                        return <Student
+                            id={std.id}
+                            name={std.name}
+                            course={std.course}
+                            fees={std.fees}
+                            key={index} />
                     })
                 }
             </>
