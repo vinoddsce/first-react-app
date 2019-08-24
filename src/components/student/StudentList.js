@@ -6,9 +6,17 @@ import { PropTypes } from 'prop-types';
 
 class StudentList extends Component {
     constructor(props) {
+        console.log("StudentList -> constructor() called !!!!");
         super(props);
         this.state = {}
     }
+
+
+    static getDerivedStateFromProps(props, state) {
+        console.log("Props", props);
+        console.log("State", state);
+    }
+
     render() {
         return (
             <>
@@ -20,6 +28,7 @@ class StudentList extends Component {
                             name={std.name}
                             course={std.course}
                             fees={std.fees}
+                            deleteStudent={this.props.deleteStudent}
                             key={index} />
                     })
                 }

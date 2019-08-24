@@ -5,7 +5,9 @@ const Student = (props) => {
         <span style={{ padding: '0px 25px', width: '25%' }}>{props.name}</span>
         <span style={{ padding: '0px 25px', width: '25%' }}>{props.course}</span>
         <span style={{ padding: '0px 25px', width: '25%' }}>{props.fees}</span>
-        <button>Delete</button></p>
+        <button onClick={() => {
+            props.deleteStudent(props.id)
+        }}>Delete</button></p>
 }
 
 export default Student;

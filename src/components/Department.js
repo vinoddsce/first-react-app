@@ -19,17 +19,17 @@ class Department extends Component {
     }
 
     onNameChange(event) {
-        console.log("Changed Value: ", event.target.value);
+        // console.log("Changed Value: ", event.target.value);
         this.stdName = event.target.value;
     }
 
     onCourseChange(event) {
-        console.log("Changed Value: ", event.target.value);
+        // console.log("Changed Value: ", event.target.value);
         this.stdCourse = event.target.value;
     }
 
     onFeesChange(event) {
-        console.log("Changed Value: ", event.target.value);
+        // console.log("Changed Value: ", event.target.value);
         this.stdFees = event.target.value;
     }
 
@@ -38,7 +38,7 @@ class Department extends Component {
     }
 
     render() {
-        console.log("Department -> render()");
+        // console.log("Department -> render()");
         return (
             <div>
                 <h4>Department No: {this.props.deptNumber}</h4>

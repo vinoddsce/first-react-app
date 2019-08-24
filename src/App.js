@@ -12,10 +12,11 @@ class App extends Component {
       students: []
     }
     this.addStudent = this.addStudent.bind(this);
+    this.deleteStudent = this.deleteStudent.bind(this);
   }
 
   addStudent(name, course, fees) {
-    console.log("App->addStudent(): ", name);
+    // console.log("App->addStudent(): ", name);
 
     var temp = this.state.students;
     var std = new StudentDTO(this.state.students.length + 1, name, course, fees);
@@ -27,8 +28,18 @@ class App extends Component {
     })
   }
 
+
+  deleteStudent(id) {
+    var temp = this.state.students.filter((s) => {
+      return s.id !== id;
+    });
+    this.setState({
+      students: temp
+    })
+  }
+
   render() {
-    console.log("App -> render()", this.state);
+    // console.log("App -> render()", this.state);
     return (
       <div className="App">
         <p>{this.props.title}</p>
@@ -36,7 +47,7 @@ class App extends Component {
         <hr></hr>
         <Department addStudent={this.addStudent} deptNumber={"100"} />
         <hr></hr>
-        <StudentList students={this.state.students} />
+        <StudentList students={this.state.students} deleteStudent={this.deleteStudent} />
       </div>
     );
   }
