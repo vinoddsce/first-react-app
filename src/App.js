@@ -9,7 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: []
+      students: [],
+      newStudentAdded: false
     }
     this.addStudent = this.addStudent.bind(this);
     this.deleteStudent = this.deleteStudent.bind(this);
@@ -17,15 +18,25 @@ class App extends Component {
 
   addStudent(name, course, fees) {
     // console.log("App->addStudent(): ", name);
-
     var temp = this.state.students;
-    var std = new StudentDTO(this.state.students.length + 1, name, course, fees);
-    console.log('std', std);
-    temp.push(std);
+    if (name === "" && course === "" && fees === "") {
+      this.setState({
+        students: temp,
+        newStudentAdded: false
+      });
+    } else {
 
-    this.setState({
-      students: temp
-    })
+      var std = new StudentDTO(this.state.students.length + 1, name, course, fees);
+      console.log('std', std);
+      temp.push(std);
+
+      this.setState({
+        students: temp,
+        newStudentAdded: true
+      })
+    }
+
+
   }
 
 
@@ -47,10 +58,11 @@ class App extends Component {
         <hr></hr>
         <Department addStudent={this.addStudent} deptNumber={"100"} />
         <hr></hr>
-        <StudentList students={this.state.students} deleteStudent={this.deleteStudent} />
+        <StudentList newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} />
       </div>
     );
   }
 }
 
 export default App;
+
