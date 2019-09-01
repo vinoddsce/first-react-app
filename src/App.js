@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   addStudent(name, course, fees) {
-    // console.log("App->addStudent(): ", name);
+    console.log("App->addStudent(): ", name, course, fees);
     var temp = this.state.students;
     if (name === "" && course === "" && fees === "") {
       this.setState({

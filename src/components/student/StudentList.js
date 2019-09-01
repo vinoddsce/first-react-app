@@ -29,11 +29,7 @@ class StudentList extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log("StudentList -> shouldComponentUpdate()");
-        console.log("Next Props", nextProps);
-        console.log("Props", this.props);
-        console.log("Next State", nextState);
-        console.log("State", this.state);
+
         if (nextProps.newStudentAdded) {
             return true;
         } else {
@@ -42,13 +38,11 @@ class StudentList extends Component {
     }
 
     componentDidMount() {
-        console.log("StudentList -> componentDidMount()");
+
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log("StudentList -> getSnapshotBeforeUpdate()");
-        console.log("prevState", prevState);
-        console.log("props", this.props);
+
         if (prevState.stds.length !== this.props.students.length) {
             return this.props.students.length - prevState.stds.length;
         }
@@ -56,12 +50,11 @@ class StudentList extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("StudentList -> componentDidUpdate()", snapshot);
+
     }
 
     componentDidCatch(error, info) {
-        console.log("StudentList -> componentDidCatch()", error, info);
-        console.log("INFORMATION", info);
+
     }
 
     render() {

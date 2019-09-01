@@ -1,3 +1,5 @@
+// import { attribute } from "postcss-selector-parser";
+
 // var a = [1, 2, 3];
 // var b = [4, 5, ...a, 6, 7];
 // // console.log(b);
@@ -58,9 +60,15 @@
 // console.log(info);
 
 
-var students = ['Vinod', 'Kumar'];
+// var students = ['Vinod', 'Kumar'];
 
-students.map((name) => {
-    console.log(name)
-})
+// students.map((name) => {
+//     console.log(name)
+// })
+
+var idAttribute = "id";
+var person = {
+    id: 111
+}
+console.log(person);
 
