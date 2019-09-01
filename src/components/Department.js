@@ -50,6 +50,9 @@ class Department extends Component {
         console.log("Department -> render()");
         return (
             <div>
+
+
+
                 <h4>Department No: {this.props.deptNumber}</h4>
                 <p>College Name : {this.state.collegeName}, Department Name: {this.state.departmentName}</p>
                 Name: <input type="text" name="stdName" ref="stdName" onChange={this.onNameChange} />
