@@ -14,6 +14,7 @@ class Department extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.onStudentFormSubmit = this.onStudentFormSubmit.bind(this);
+        this.nameRef = React.createRef();
     }
 
     handleChange(event) {
@@ -28,6 +29,10 @@ class Department extends Component {
         event.preventDefault();
     }
 
+    componentDidMount() {
+        this.nameRef.current.focus();
+    }
+
     render() {
         // console.log("Department -> render()");
         return (
@@ -36,7 +41,8 @@ class Department extends Component {
                 <p>College Name : {this.state.collegeName}, Department Name: {this.state.departmentName}</p>
 
                 <form onSubmit={this.onStudentFormSubmit}>
-                    Name: <input type="text" value={this.state.stdName} name="stdName" onChange={this.handleChange} />
+                    Name: <input type="text" value={this.state.stdName}
+                        ref={this.nameRef} name="stdName" onChange={this.handleChange} />
                     {/* Course: <input type="text" value={this.state.stdCourse} name="stdCourse" onChange={this.handleChange} /> */}
 
                     Course: <select value={this.state.stdCourse} name="stdCourse" onChange={this.handleChange}>
