@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Department from './components/Department';
 import StudentDTO from './common/StudentDTO';
-import StudentList from './components/student/StudentList';
+import DepartmentContainer from './components/department-container/DepartmentContainer';
+import StudentContainer from './components/student-conatiner/StudentContainer';
 
 class App extends Component {
 
@@ -35,8 +35,6 @@ class App extends Component {
         newStudentAdded: true
       })
     }
-
-
   }
 
 
@@ -56,9 +54,13 @@ class App extends Component {
         <p>{this.props.title}</p>
         <hr></hr>
         <hr></hr>
-        <Department addStudent={this.addStudent} deptNumber={"100"} />
+        <DepartmentContainer addStudent={this.addStudent} deptNumber={"100"} />
         <hr></hr>
-        <StudentList newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} />
+        <br />
+        <br />
+        <br />
+        <br />
+        <StudentContainer newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} />
       </div>
     );
   }

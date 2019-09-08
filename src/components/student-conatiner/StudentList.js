@@ -60,7 +60,7 @@ class StudentList extends Component {
     render() {
         console.log("StudentList render()");
         return (
-            <div>
+            <div style={{ border: "2px solid green" }}>
                 <h3><span style={{ padding: '0px 25px', width: '25%' }}>ID</span><span style={{ padding: '0px 25px', width: '25%' }}>Name</span><span style={{ padding: '0px 25px', width: '25%' }}>Course</span><span style={{ padding: '0px 25px', width: '25%' }}>Fees</span></h3>
                 {
                     this.props.students.map((std, index) => {

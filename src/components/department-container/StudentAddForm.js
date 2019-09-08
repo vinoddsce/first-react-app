@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
-
-class Department extends Component {
+class StudentAddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            departmentName: "Pre-Unversity",
-            collegeName: "PESIT",
             stdName: "",
             stdCourse: "",
             stdFees: 0
@@ -25,6 +21,7 @@ class Department extends Component {
     }
 
     onStudentFormSubmit(event) {
+        console.log("Using Ref: ", this.nameRef.value);
         this.props.addStudent(this.state.stdName, this.state.stdCourse, this.state.stdFees);
         event.preventDefault();
     }
@@ -36,13 +33,15 @@ class Department extends Component {
     render() {
         // console.log("Department -> render()");
         return (
-            <div>
+            <div style={{ border: "2px solid green" }}>
                 <h4>Department No: {this.props.deptNumber}</h4>
                 <p>College Name : {this.state.collegeName}, Department Name: {this.state.departmentName}</p>
 
                 <form onSubmit={this.onStudentFormSubmit}>
                     Name: <input type="text" value={this.state.stdName}
-                        ref={this.nameRef} name="stdName" onChange={this.handleChange} />
+                        ref={this.nameRef}
+                        name="stdName" onChange={this.handleChange} />
+
                     {/* Course: <input type="text" value={this.state.stdCourse} name="stdCourse" onChange={this.handleChange} /> */}
 
                     Course: <select value={this.state.stdCourse} name="stdCourse" onChange={this.handleChange}>
@@ -61,11 +60,12 @@ class Department extends Component {
     }
 }
 
-Department.propTypes = {
+StudentAddForm.propTypes = {
     addStudent: PropTypes.func.isRequired,
     deptNumber: PropTypes.oneOfType([
         PropTypes.number, PropTypes.string
     ]).isRequired
 }
 
-export default Department;
+
+export default StudentAddForm;
