@@ -4,6 +4,8 @@ import StudentDTO from './common/StudentDTO';
 import DepartmentContainer from './components/department-container/DepartmentContainer';
 import StudentContainer from './components/student-conatiner/StudentContainer';
 
+import { StudentsProvider } from './context/StudentContext';
+
 class App extends Component {
 
   constructor(props) {
@@ -60,7 +62,15 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <StudentContainer newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} />
+
+        <StudentsProvider value={{
+          newStudentAdded: this.state.newStudentAdded, students: this.state.students,
+          deleteStudent: this.deleteStudent
+        }}>
+          <StudentContainer />
+        </StudentsProvider>
+
+        {/* <StudentContainer newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} /> */}
       </div>
     );
   }

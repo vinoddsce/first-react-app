@@ -2,10 +2,10 @@ import React from 'react';
 import StudentList from './StudentList';
 
 
-const StudentContainer = (props) => {
+const StudentContainer = () => {
     return (
         <div style={{ border: "5px solid red" }}>
-            <StudentList {...props} />
+            <StudentList />
         </div>
     )
 }
