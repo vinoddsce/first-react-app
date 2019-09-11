@@ -12,7 +12,7 @@ class DepartmentContainer extends Component {
 
     render() {
         return (
-            <div style={{ border: "5px solid red" }}>
+            <div>
                 <h4>Department No: {this.props.deptNumber}</h4>
                 <p>College Name : {this.state.collegeName}, Department Name: {this.state.departmentName}</p>
 

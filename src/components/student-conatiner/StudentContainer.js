@@ -4,7 +4,7 @@ import StudentList from './StudentList';
 
 const StudentContainer = () => {
     return (
-        <div style={{ border: "5px solid red" }}>
+        <div>
             <StudentList />
         </div>
     )

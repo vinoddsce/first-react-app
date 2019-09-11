@@ -22,7 +22,7 @@ class StudentList extends Component {
                                 {
                                     context.students.map((std, index) => {
                                         return <Student
-                                            id={std.id}
+                                            id={std._id}
                                             name={std.name}
                                             course={std.course}
                                             fees={std.fees}

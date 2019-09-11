@@ -49,6 +49,31 @@ class App extends Component {
     })
   }
 
+
+
+
+  componentDidMount() {
+    fetch("http://localhost:8000/students", {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    }).then(
+      (response) => {
+        response.json().then(data => {
+          console.log("Data: ", data);
+          this.setState({
+            students: data
+          })
+        })
+
+      }
+    ).catch(error => {
+      console.log("Error Response: ", error);
+    });
+  }
+
   render() {
     // console.log("App -> render()", this.state);
     return (
