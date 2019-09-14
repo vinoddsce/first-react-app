@@ -6,6 +6,8 @@ import StudentContainer from './components/student-conatiner/StudentContainer';
 
 import { StudentsProvider } from './context/StudentContext';
 
+import axios from 'axios';
+
 class App extends Component {
 
   constructor(props) {
@@ -16,6 +18,7 @@ class App extends Component {
     }
     this.addStudent = this.addStudent.bind(this);
     this.deleteStudent = this.deleteStudent.bind(this);
+    this.updateStudent = this.updateStudent.bind(this);
   }
 
   addStudent(name, course, fees) {
@@ -30,23 +33,62 @@ class App extends Component {
 
       var std = new StudentDTO(this.state.students.length + 1, name, course, fees);
       console.log('std', std);
-      temp.push(std);
 
-      this.setState({
-        students: temp,
-        newStudentAdded: true
-      })
+      axios.post('http://localhost:8000/students', std).then(
+        (response) => {
+          console.log("Data: ", response.data);
+          std._id = response.data["_id"];
+          temp.push(std);
+          this.setState({
+            students: temp,
+            newStudentAdded: true
+          })
+        }
+      ).catch(error => {
+        console.log("Error Response: ", error);
+      });
     }
   }
 
-
-  deleteStudent(id) {
-    var temp = this.state.students.filter((s) => {
-      return s.id !== id;
-    });
-    this.setState({
-      students: temp
+  updateStudent(std) {
+    // var temp = this.state.students.filter((s) => {
+    //   return s._id !== _id;
+    // });
+    console.log(std);
+    var findStudent = this.state.students.find((s) => {
+      if (std._id === s._id) {
+        return s;
+      }
     })
+    console.log(findStudent);
+    findStudent["name"] = std["name"];
+    findStudent["course"] = std["course"];
+    findStudent["fees"] = std["fees"];
+    console.log(findStudent);
+    console.log("Updating Student: ", `http://localhost:8000/students/${findStudent._id}`);
+    axios.put(`http://localhost:8000/students/${findStudent._id}`, findStudent).then(response => {
+      console.log("Data: ", response.data);
+      // this.setState({
+      //   students: this.students
+      // })
+    }).catch(error => {
+      console.log("Error Response: ", error);
+    });
+  }
+
+  deleteStudent(_id) {
+    var temp = this.state.students.filter((s) => {
+      return s._id !== _id;
+    });
+
+    axios.delete(`http://localhost:8000/students/${_id}`).then(response => {
+      console.log("Data: ", response.data);
+      this.setState({
+        students: temp
+      })
+    }).catch(error => {
+      console.log("Error Response: ", error);
+    });
   }
 
 
@@ -90,7 +132,7 @@ class App extends Component {
 
         <StudentsProvider value={{
           newStudentAdded: this.state.newStudentAdded, students: this.state.students,
-          deleteStudent: this.deleteStudent
+          deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
         }}>
           <StudentContainer />
         </StudentsProvider>

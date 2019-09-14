@@ -15,7 +15,7 @@ class Student extends Component {
         super(props);
         this.state = {
             isEdit: false,
-            stdId: this.props.id,
+            stdId: this.props._id,
             stdName: this.props.name,
             stdCourse: this.props.course,
             stdFees: this.props.fees
@@ -38,10 +38,12 @@ class Student extends Component {
         })
     }
 
-    updateStudent() {
+    updateStudent(event) {
+        this.props.updateStudent({ _id: this.state.stdId, name: this.state.stdName, course: this.state.stdCourse, fees: this.state.stdFees })
         this.setState({
             isEdit: false
         })
+        event.preventDefault();
     }
 
     render() {
