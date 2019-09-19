@@ -91,9 +91,6 @@ class App extends Component {
     });
   }
 
-
-
-
   componentDidMount() {
     fetch("http://localhost:8000/students", {
       headers: {
@@ -112,6 +109,7 @@ class App extends Component {
 
       }
     ).catch(error => {
+      alert(error);
       console.log("Error Response: ", error);
     });
   }
