@@ -47,6 +47,7 @@ class Student extends Component {
     }
 
     render() {
+        console.log("bColor", this.props);
         return (
 
             this.state.isEdit ?
@@ -59,7 +60,7 @@ class Student extends Component {
 
                         <select value={this.state.stdCourse} name="stdCourse" onChange={this.handleChange}>
                             <option value="ReactJS">ReactJS</option>
-                            <option value="AngularJS">AngularJS</option>
+                            <option value="Angular">Angular</option>
                             <option value="VueJS">VueJS</option>
                             <option defaultValue="NodeJS">NodeJS</option>
                         </select>
@@ -72,7 +73,7 @@ class Student extends Component {
 
                 :
 
-                <div>
+                <div style={{ backgroundColor: this.props.bColor, color: this.props.color }}>
                     <p>
                         <span style={{ padding: '0px 25px', width: '25%' }}>{this.state.stdId}</span>
                         <span style={{ padding: '0px 25px', width: '25%' }}>{this.state.stdName}</span>

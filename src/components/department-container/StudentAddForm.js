@@ -46,7 +46,7 @@ class StudentAddForm extends Component {
 
                     Course: <select value={this.state.stdCourse} name="stdCourse" onChange={this.handleChange}>
                         <option value="ReactJS">ReactJS</option>
-                        <option value="AngularJS">AngularJS</option>
+                        <option value="Angular">Angular</option>
                         <option value="VueJS">VueJS</option>
                         <option defaultValue="NodeJS">NodeJS</option>
                     </select>

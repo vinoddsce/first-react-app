@@ -5,6 +5,8 @@ import Student from './Student';
 import { PropTypes } from 'prop-types';
 import { StudentsConsumer } from '../../context/StudentContext';
 
+import withColor from './withColor';
+
 class StudentList extends Component {
     constructor(props) {
         super(props);
@@ -21,14 +23,27 @@ class StudentList extends Component {
                                 <h3><span style={{ padding: '0px 25px', width: '25%' }}>ID</span><span style={{ padding: '0px 25px', width: '25%' }}>Name</span><span style={{ padding: '0px 25px', width: '25%' }}>Course</span><span style={{ padding: '0px 25px', width: '25%' }}>Fees</span></h3>
                                 {
                                     context.students.map((std, index) => {
-                                        return <Student
-                                            _id={std._id}
-                                            name={std.name}
-                                            course={std.course}
-                                            fees={std.fees}
-                                            updateStudent={context.updateStudent}
-                                            deleteStudent={context.deleteStudent}
-                                            key={index} />
+                                        const WithColor = withColor(Student);
+                                        const props = {
+                                            _id: std._id,
+                                            name: std.name,
+                                            course: std.course,
+                                            fees: std.fees,
+                                            updateStudent: context.updateStudent,
+                                            deleteStudent: context.deleteStudent,
+                                            key: index
+                                        }
+                                        if (std.course === 'ReactJS') {
+                                            const FinalCompo = <WithColor {...props} bColor="blue" />;
+                                            return FinalCompo;
+                                        } else if (std.course === 'Angular') {
+                                            const FinalCompo = <WithColor {...props} bColor="red" />;
+                                            return FinalCompo;
+                                        } else {
+                                            const FinalCompo = <WithColor {...props} bColor="grey" />;
+                                            return FinalCompo;
+                                        }
+
                                     })
                                 }
                             </div>
@@ -64,6 +79,7 @@ StudentList.propTypes = {
 // }
 
 export default StudentList;
+
 
 
 

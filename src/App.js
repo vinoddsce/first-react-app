@@ -7,10 +7,8 @@ import StudentContainer from './components/student-conatiner/StudentContainer';
 import { StudentsProvider } from './context/StudentContext';
 
 import axios from 'axios';
-import StudentDetails from './StudentDetails';
 
-
-import higherOrderComponent from './higherOrderComponent';
+import logo from './logo.svg';
 
 class App extends Component {
 
@@ -120,15 +118,31 @@ class App extends Component {
 
   render() {
     // console.log("App -> render()", this.state);
-    // higherOrderComponent
-    // var comp = <StudentDetails />
-    var NewComponent = higherOrderComponent(StudentDetails);
-    console.log(NewComponent);
     return (
-      <NewComponent />
+      <div className="App">
+        <p>{this.props.title}</p>
+        <hr></hr>
+        <hr></hr>
+        <DepartmentContainer addStudent={this.addStudent} deptNumber={"100"} />
+        <hr></hr>
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <StudentsProvider value={{
+          newStudentAdded: this.state.newStudentAdded, students: this.state.students,
+          deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
+        }}>
+          <StudentContainer />
+        </StudentsProvider>
+
+        {/* <StudentContainer newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} /> */}
+      </div>
     );
   }
 }
+
 
 export default App;
 
