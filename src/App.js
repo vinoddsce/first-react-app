@@ -10,6 +10,19 @@ import axios from 'axios';
 
 import logo from './logo.svg';
 
+// import '../node_modules/bootstrap/dist/css/b';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+
+import Home from './components/Home';
+
+
 class App extends Component {
 
   constructor(props) {
@@ -118,27 +131,47 @@ class App extends Component {
 
   render() {
     // console.log("App -> render()", this.state);
+
     return (
-      <div className="App">
-        <p>{this.props.title}</p>
-        <hr></hr>
-        <hr></hr>
-        <DepartmentContainer addStudent={this.addStudent} deptNumber={"100"} />
-        <hr></hr>
-        <br />
-        <br />
-        <br />
-        <br />
+      // <div className="App">
+      //     <p>{this.props.title}</p>
+      //     <hr></hr>
+      //     <hr></hr>
+      //     <DepartmentContainer addStudent={this.addStudent} deptNumber={"100"} />
+      //     <hr></hr>
+      //     <br />
+      //     <br />
+      //     <br />
+      //     <br />
 
-        <StudentsProvider value={{
-          newStudentAdded: this.state.newStudentAdded, students: this.state.students,
-          deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
-        }}>
-          <StudentContainer />
-        </StudentsProvider>
+      //     <StudentsProvider value={{
+      //       newStudentAdded: this.state.newStudentAdded, students: this.state.students,
+      //       deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
+      //     }}>
+      //       <StudentContainer />
+      //     </StudentsProvider>
 
-        {/* <StudentContainer newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} /> */}
-      </div>
+      //     {/* <StudentContainer newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} /> */}
+      //   </div>
+      <Router>
+        <div className="App">
+          <div className="container">
+            <ul>
+              <li><Link to="/home">Home</Link></li>
+              <li><Link to="/department">Department</Link></li>
+              <li><Link to="/student-list">StudentList</Link></li>
+            </ul>
+            <hr />
+            <hr />
+            {/* Routes will go here */}
+          </div>
+          <hr />
+          <Route path="/" exact={true} component={Home} />
+          <Route path="/department" component={DepartmentContainer} />
+          <Route path="/student-list" component={StudentContainer} />
+          <hr />
+        </div>
+      </Router >
     );
   }
 }
