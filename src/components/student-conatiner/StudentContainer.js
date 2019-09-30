@@ -3,14 +3,6 @@ import StudentList from './StudentList';
 
 import withLoadingSpinner from '../withLoadingSpinner';
 
-// const StudentContainer = () => {
-//     return (
-//         <div>
-//             <StudentList />
-//         </div>
-//     )
-// }
-
 const StudentListWithLoadingSpinner = withLoadingSpinner(StudentList);
 
 class StudentContainer extends Component {
@@ -27,6 +19,7 @@ class StudentContainer extends Component {
         this.setState({ data: "loaded" });
     }
     render() {
+        console.log("StudentContainer --> render()");
         return (
             <div style={{ textAlign: 'center' }}>
                 <StudentListWithLoadingSpinner data={this.state.data} />

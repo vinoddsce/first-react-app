@@ -13,7 +13,7 @@ class StudentList extends Component {
     }
 
     render() {
-        console.log("StudentList render()");
+        console.log("StudentList --> render()");
         return (
             <StudentsConsumer>
                 {

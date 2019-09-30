@@ -5,6 +5,7 @@ import DepartmentContainer from './components/department-container/DepartmentCon
 import StudentContainer from './components/student-conatiner/StudentContainer';
 
 import { StudentsProvider } from './context/StudentContext';
+import { DepartmentProvider } from './context/DepartmentContext';
 
 import axios from 'axios';
 
@@ -21,6 +22,7 @@ import {
 } from 'react-router-dom';
 
 import Home from './components/Home';
+import Information from './components/Information';
 
 
 class App extends Component {
@@ -133,42 +135,67 @@ class App extends Component {
     // console.log("App -> render()", this.state);
 
     return (
-      // <div className="App">
-      //     <p>{this.props.title}</p>
-      //     <hr></hr>
-      //     <hr></hr>
-      //     <DepartmentContainer addStudent={this.addStudent} deptNumber={"100"} />
-      //     <hr></hr>
-      //     <br />
-      //     <br />
-      //     <br />
-      //     <br />
 
-      //     <StudentsProvider value={{
-      //       newStudentAdded: this.state.newStudentAdded, students: this.state.students,
-      //       deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
-      //     }}>
-      //       <StudentContainer />
-      //     </StudentsProvider>
-
-      //     {/* <StudentContainer newStudentAdded={this.state.newStudentAdded} students={this.state.students} deleteStudent={this.deleteStudent} /> */}
-      //   </div>
       <Router>
         <div className="App">
           <div className="container">
-            <ul>
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/department">Department</Link></li>
-              <li><Link to="/student-list">StudentList</Link></li>
-            </ul>
+
+            <Link to="/home">Home</Link>&nbsp;&nbsp;
+            <Link to="/home/info">Information</Link>&nbsp;&nbsp;
+            <Link to="/department">Department</Link>&nbsp;&nbsp;
+            <Link to="/student-list">StudentList</Link>
+
             <hr />
-            <hr />
-            {/* Routes will go here */}
+
+            <DepartmentProvider value={{ addStudent: this.addStudent }}>
+              <StudentsProvider value={{
+                newStudentAdded: this.state.newStudentAdded, students: this.state.students,
+                deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
+              }}>
+                <Switch>
+                  <Route path="/" exact={true} component={Home} />
+                  <Route path="/home/info" component={Information} />
+                  <Route path="/home" component={Home} />
+                  <Route path="/department" component={DepartmentContainer} />
+                  <Route path="/student-list" component={StudentContainer} />
+                </Switch>
+              </StudentsProvider>
+            </DepartmentProvider>
+
+            {/* <Switch>
+              <Route path="/" exact={true} component={Home} />
+
+              <Route path="/home/info" component={Information} />
+              <Route path="/home" component={Home} />
+
+              
+              <DepartmentProvider value={{ addStudent: this.addStudent }}>
+                <Route path="/department" component={DepartmentContainer} />
+              </DepartmentProvider>
+
+              <Route path="/department" component={DepartmentContainer} />
+
+              <StudentsProvider value={{
+                newStudentAdded: this.state.newStudentAdded, students: this.state.students,
+                deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
+              }}>
+                <Route path="/student-list" component={StudentContainer} />
+              </StudentsProvider>
+
+              <Route path="/student-list" component={StudentContainer} />
+
+            </Switch> */}
+
+
+
+
           </div>
           <hr />
-          <Route path="/" exact={true} component={Home} />
-          <Route path="/department" component={DepartmentContainer} />
-          <Route path="/student-list" component={StudentContainer} />
+
+
+
+
+
           <hr />
         </div>
       </Router >
@@ -178,4 +205,5 @@ class App extends Component {
 
 
 export default App;
+
 
