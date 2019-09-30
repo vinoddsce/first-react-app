@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StudentAddForm from './StudentAddForm';
 
-import withHiddenProp from '../withHiddenProp';
+import withHiddenProp from '../../components/hoc/withHiddenProp';
 import { DepartmentConsumer } from '../../context/DepartmentContext';
 
 class DepartmentContainer extends Component {

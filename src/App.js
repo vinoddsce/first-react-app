@@ -22,7 +22,8 @@ import {
 } from 'react-router-dom';
 
 import Home from './components/Home';
-import Information from './components/Information';
+import Information from './components/hoc/Information';
+import PageNotFound from './components/PageNotFound';
 
 
 class App extends Component {
@@ -158,6 +159,7 @@ class App extends Component {
                   <Route path="/home" component={Home} />
                   <Route path="/department" component={DepartmentContainer} />
                   <Route path="/student-list" component={StudentContainer} />
+                  <Route path="/*" component={PageNotFound} />
                 </Switch>
               </StudentsProvider>
             </DepartmentProvider>

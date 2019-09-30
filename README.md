@@ -1,3 +1,15 @@
+…or create a new repository on the command line
+echo "# AngCommObsSub" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/vinoddsce/AngCommObsSub.git
+git push -u origin master
+…or push an existing repository from the command line
+git remote add origin https://github.com/vinoddsce/AngCommObsSub.git
+git push -u origin master
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

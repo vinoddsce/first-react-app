@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-
-import Student from './Student';
-
-import { PropTypes } from 'prop-types';
 import { StudentsConsumer } from '../../context/StudentContext';
 import withColor from './withColor';
+import Student from './Student';
 
-class StudentList extends Component {
+class ReactStudents extends Component {
     constructor(props) {
         super(props);
+        this.state = {}
     }
-
     render() {
-        console.log("StudentList --> render()");
         return (
             <StudentsConsumer>
                 {
@@ -35,12 +31,6 @@ class StudentList extends Component {
                                         if (std.course === 'ReactJS') {
                                             const FinalCompo = <WithColor {...props} bColor="blue" />;
                                             return FinalCompo;
-                                        } else if (std.course === 'Angular') {
-                                            const FinalCompo = <WithColor {...props} bColor="red" />;
-                                            return FinalCompo;
-                                        } else {
-                                            const FinalCompo = <WithColor {...props} bColor="orange" />;
-                                            return FinalCompo;
                                         }
 
                                     })
@@ -54,33 +44,4 @@ class StudentList extends Component {
     }
 }
 
-StudentList.propTypes = {
-    students: PropTypes.array
-}
-
-// const arr_fun = (param_list_optional) => {
-//     return "Hi"
-// }
-
-
-
-// const StudentList = (props) => {
-//     return (
-// <div>
-//     <h1>Students: </h1>
-//     {
-//         props.students.map((name) => {
-//             return <Student name={name} />
-//         })
-//     }
-// </div>
-//     );
-// }
-
-export default StudentList;
-
-
-
-
-
-
+export default ReactStudents;

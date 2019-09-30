@@ -6,6 +6,7 @@ class Home extends Component {
         this.state = {}
     }
     render() {
+        console.log("Home: ", this.props);
         return (
             <div className="container">
                 <h1>This is home component</h1>
