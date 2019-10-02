@@ -25,6 +25,7 @@ import Home from './components/Home';
 import Information from './components/hoc/Information';
 import PageNotFound from './components/PageNotFound';
 
+import StudentDetails from './components/student-conatiner/StudentDetails';
 
 class App extends Component {
 
@@ -159,6 +160,9 @@ class App extends Component {
                   <Route path="/home" component={Home} />
                   <Route path="/department" component={DepartmentContainer} />
                   <Route path="/student-list" component={StudentContainer} />
+
+                  <Route path="/student/:id" component={StudentDetails} />
+
                   <Route path="/*" component={PageNotFound} />
                 </Switch>
               </StudentsProvider>

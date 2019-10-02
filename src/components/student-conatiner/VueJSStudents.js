@@ -9,6 +9,7 @@ class VueJSStudents extends Component {
         this.state = {}
     }
     render() {
+        console.log("VueJSStudents", this.props);
         return (
             <StudentsConsumer>
                 {
@@ -30,6 +31,7 @@ class VueJSStudents extends Component {
                                         }
                                         if (std.course === 'VueJS') {
                                             const FinalCompo = <WithColor {...props} bColor="orange" />;
+                                            console.log("FinalCompo", FinalCompo);
                                             return FinalCompo;
                                         }
 

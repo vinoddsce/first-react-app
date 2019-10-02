@@ -42,6 +42,7 @@ class StudentContainer extends Component {
                             <Link to={`${this.props.match.url}/reactjs`}>ReactJS</Link>&nbsp;&nbsp;
                             <Link to={`${this.props.match.url}/vuejs`}>VueJS</Link>&nbsp;&nbsp;
                             <Link to={`${this.props.match.url}/nodejs`}>NodeJS</Link>
+
                         </div>
 
                     </div>
@@ -52,6 +53,7 @@ class StudentContainer extends Component {
                     <Route path={`${this.props.match.path}/reactjs`} component={ReactStudents} />
                     <Route path={`${this.props.match.path}/vuejs`} component={VueJSStudents} />
                     <Route path={`${this.props.match.path}/nodejs`} component={NodeJSStudents} />
+
                 </div>
             </div>
 

@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Switch,
+    Redirect
+} from 'react-router-dom';
 
 // const Student = (props) => {
 //     return <p><span style={{ padding: '0px 25px', width: '25%' }}>{props.id}</span>
@@ -75,7 +82,7 @@ class Student extends Component {
 
                 <div style={{ backgroundColor: this.props.bColor, color: this.props.color }}>
                     <p>
-                        <span style={{ padding: '0px 25px', width: '25%' }}>{this.state.stdId}</span>
+                        <Link to={`/student/${this.props._id}`}><span style={{ padding: '0px 25px', width: '25%' }}>{this.state.stdId}</span></Link>
                         <span style={{ padding: '0px 25px', width: '25%' }}>{this.state.stdName}</span>
                         <span style={{ padding: '0px 25px', width: '25%' }}>{this.state.stdCourse}</span>
                         <span style={{ padding: '0px 25px', width: '25%' }}>{this.state.stdFees}</span>
@@ -87,7 +94,7 @@ class Student extends Component {
                             this.props.deleteStudent(this.state.stdId)
                         }}>Delete</button>
                     </p>
-                </div>
+                </div >
 
         );
     }
