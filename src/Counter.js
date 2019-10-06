@@ -1,15 +1,18 @@
+
 import React, { Component } from 'react';
 
-class NodeJSStudents extends Component {
+class Counter extends Component {
     constructor(props) {
         super(props);
         this.state = {}
     }
     render() {
         return (
-            <h1>NodeJS Students</h1>
+            <>
+                Counter Value Is : {this.props.count}
+            </>
         );
     }
 }
 
-export default NodeJSStudents;
+export default Counter;
