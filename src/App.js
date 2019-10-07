@@ -1,45 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
 import Counter from './Counter';
+import { INCR, DECR } from './actionTypes';
+import { connect } from 'react-redux';
 
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0
-    }
-  }
-
-  increment = () => {
-    var cnt = this.state.count;
-    cnt++;
-    this.setState({
-      count: cnt
-    })
-  }
-
-  decrement = () => {
-    var cnt = this.state.count;
-    cnt--;
-    this.setState({
-      count: cnt
-    })
   }
 
   render() {
     return (
       <>
-        <Counter count={this.state.count} />
+        <Counter />
         <br />
-        <span><button onClick={this.increment}>+</button><button onClick={this.decrement}>-</button></span>
+        <span>
+          <button onClick={this.props.increment}>+</button><button onClick={this.props.decrement}>-</button>
+        </span>
       </>
     );
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: () => {
+      dispatch({ type: INCR })
+    }
+  }
+}
 
-export default App;
+
+export default connect(null, mapDispatchToProps)(App);
 
 
