@@ -160,9 +160,7 @@ class App extends Component {
                   <Route path="/home" component={Home} />
                   <Route path="/department" component={DepartmentContainer} />
                   <Route path="/student-list" component={StudentContainer} />
-
                   <Route path="/student/:id" component={StudentDetails} />
-
                   <Route path="/*" component={PageNotFound} />
                 </Switch>
               </StudentsProvider>
