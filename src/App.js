@@ -9,6 +9,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    console.log("App props: ", props);
   }
 
   render() {
@@ -28,6 +29,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     increment: () => {
       dispatch({ type: INCR })
+    },
+    decrement: () => {
+      dispatch({ type: DECR })
     }
   }
 }

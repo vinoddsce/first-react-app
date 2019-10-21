@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Counter extends Component {
     constructor(props) {
@@ -15,4 +16,10 @@ class Counter extends Component {
     }
 }
 
-export default Counter;
+const mapStateToProps = (state) => {
+    return {
+        count: state.count
+    }
+}
+
+export default connect(mapStateToProps, null)(Counter);
