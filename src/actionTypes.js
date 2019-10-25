@@ -1,0 +1,5 @@
+export const READ_ALL_STUDENT = 'READ_ALL_STUDENT';
+export const READ_STUDENT = 'READ_STUDENT';
+export const ADD_STUDENT = 'ADD_STUDENT';
+export const REMOVE_STUDENT = 'ADD_STUDENT';
+export const UPDATE_STUDENT = 'ADD_STUDENT';

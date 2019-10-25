@@ -9,8 +9,8 @@ import { DepartmentProvider } from './context/DepartmentContext';
 
 import axios from 'axios';
 
-import logo from './logo.svg';
-
+import { connect } from 'react-redux';
+import { READ_ALL_STUDENT, READ_STUDENT, ADD_STUDENT, REMOVE_STUDENT, UPDATE_STUDENT } from './actionTypes';
 // import '../node_modules/bootstrap/dist/css/b';
 
 import {
@@ -111,26 +111,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/students", {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      }
-    }).then(
-      (response) => {
-        response.json().then(data => {
-          console.log("Data: ", data);
-          this.setState({
-            students: data
-          })
-        })
-
-      }
-    ).catch(error => {
-      alert(error);
-      console.log("Error Response: ", error);
-    });
+    this.props.readAllStudents();
   }
 
   render() {
@@ -151,7 +132,7 @@ class App extends Component {
 
             <DepartmentProvider value={{ addStudent: this.addStudent }}>
               <StudentsProvider value={{
-                newStudentAdded: this.state.newStudentAdded, students: this.state.students,
+                newStudentAdded: this.state.newStudentAdded,
                 deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
               }}>
                 <Switch>
@@ -166,48 +147,21 @@ class App extends Component {
               </StudentsProvider>
             </DepartmentProvider>
 
-            {/* <Switch>
-              <Route path="/" exact={true} component={Home} />
-
-              <Route path="/home/info" component={Information} />
-              <Route path="/home" component={Home} />
-
-              
-              <DepartmentProvider value={{ addStudent: this.addStudent }}>
-                <Route path="/department" component={DepartmentContainer} />
-              </DepartmentProvider>
-
-              <Route path="/department" component={DepartmentContainer} />
-
-              <StudentsProvider value={{
-                newStudentAdded: this.state.newStudentAdded, students: this.state.students,
-                deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
-              }}>
-                <Route path="/student-list" component={StudentContainer} />
-              </StudentsProvider>
-
-              <Route path="/student-list" component={StudentContainer} />
-
-            </Switch> */}
-
-
-
 
           </div>
-          <hr />
 
-
-
-
-
-          <hr />
         </div>
       </Router >
     );
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    readAllStudents: () => dispatch({ type: READ_ALL_STUDENT })
+  }
+}
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);
 
 
