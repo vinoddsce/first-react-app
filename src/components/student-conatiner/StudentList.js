@@ -14,7 +14,7 @@ class StudentList extends Component {
     }
 
     render() {
-        console.log("StudentList --> render()");
+        console.log("StudentList --> render()", this.props);
         return (
 
             <StudentsConsumer>

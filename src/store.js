@@ -9,7 +9,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     console.log("Action Obj: ", action);
     if (action.type === READ_ALL_STUDENT) {
-        var data = [{ _id: "12333", name: "Vinod", course: "Angular", fees: 111 }];
+        var data = [
+            { _id: "12333", name: "Vinod", course: "Angular", fees: 111 },
+            { _id: "12333", name: "Kumar", course: "ReactJS", fees: 111 },
+            { _id: "12333", name: "M", course: "VueJS", fees: 111 }
+        ];
         return {
             ...state,
             students: data
