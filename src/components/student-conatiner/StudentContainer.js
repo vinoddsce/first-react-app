@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StudentList from './StudentList';
-
+import { fetch_all_students } from '../../studentsAction';
 import withLoadingSpinner from '../../components/hoc/withLoadingSpinner';
 import {
     BrowserRouter as Router,
@@ -29,6 +29,11 @@ class StudentContainer extends Component {
     loadingComplete() {
         this.setState({ data: "loaded" });
     }
+
+    componentDidMount() {
+        this.props.dispatch(fetch_all_students());
+        // this.props.readAllStudents();
+    }
     render() {
         console.log("StudentContainer --> render()");
         return (
@@ -46,6 +51,7 @@ class StudentContainer extends Component {
                     </div>
                 </div>
                 <div className="col-md-9">
+                    <Route path={`${this.props.match.path}`} exact={true} component={StudentList} />
                     <Route path={`${this.props.match.path}/all`} component={StudentList} />
                     <Route path={`${this.props.match.path}/angular`} component={AngularStudents} />
                     <Route path={`${this.props.match.path}/reactjs`} component={ReactStudents} />

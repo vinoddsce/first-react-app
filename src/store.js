@@ -1,51 +1,51 @@
-import { createStore } from 'redux';
-import { READ_ALL_STUDENT, READ_STUDENT, ADD_STUDENT, REMOVE_STUDENT, UPDATE_STUDENT } from './actionTypes';
-import axios from 'axios';
+import { createStore, applyMiddleware } from 'redux';
+import { READ_ALL_STUDENT, FETCHING_STUDENT, ERROR_OCCURED, READ_STUDENT, ADD_STUDENT, REMOVE_STUDENT, UPDATE_STUDENT } from './actionTypes';
+
+import thunk from 'redux-thunk';
 
 const initialState = {
-    students: []
+    students: [],
+    isLoading: false,
+    isError: false
 }
 
 const reducer = (state = initialState, action) => {
     console.log("Action Obj: ", action);
+
     if (action.type === READ_ALL_STUDENT) {
-        var data = [
-            { _id: "12333", name: "Vinod", course: "Angular", fees: 111 },
-            { _id: "12333", name: "Kumar", course: "ReactJS", fees: 111 },
-            { _id: "12333", name: "M", course: "VueJS", fees: 111 }
-        ];
+        // var data = [
+        //     { _id: "12333", name: "Vinod", course: "Angular", fees: 111 },
+        //     { _id: "12333", name: "Kumar", course: "ReactJS", fees: 111 },
+        //     { _id: "12333", name: "M", course: "VueJS", fees: 111 }
+        // ];
         return {
             ...state,
-            students: data
+            students: action.students,
+            isError: false,
+            isLoading: false
         }
-
-        // fetch("http://localhost:8000/students", {
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json',
-        //     }
-        // }).then(
-        //     (response) => {
-        //         response.json().then(data => {
-        //             console.log("State: ", state);
-        //             console.log("Data Now From Redux: ", data);
-        //             return {
-        //                 ...state,
-        //                 students: data
-        //             }
-        //         })
-
-        //     }
-        // ).catch(error => {
-        //     alert(error);
-        //     console.log("Error Response: ", error);
-        // });
     }
 
+    if (action.type === FETCHING_STUDENT) {
+        return {
+            ...state,
+            students: [],
+            isError: false,
+            isLoading: true
+        }
+    }
+
+    if (action.type === ERROR_OCCURED) {
+        return {
+            ...state,
+            students: [],
+            isError: true,
+            isLoading: false
+        }
+    }
 }
 
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;

@@ -7,6 +7,8 @@ import StudentContainer from './components/student-conatiner/StudentContainer';
 import { StudentsProvider } from './context/StudentContext';
 import { DepartmentProvider } from './context/DepartmentContext';
 
+import { fetch_all_students } from './studentsAction';
+
 import axios from 'axios';
 
 import { connect } from 'react-redux';
@@ -110,12 +112,13 @@ class App extends Component {
     });
   }
 
-  componentDidMount() {
-    this.props.readAllStudents();
-  }
+  // componentDidMount() {
+  //   this.props.dispatch(fetch_all_students());
+  //   // this.props.readAllStudents();
+  // }
 
   render() {
-    // console.log("App -> render()", this.state);
+    console.log("App -> render()", this.props);
 
     return (
 
@@ -156,12 +159,6 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    readAllStudents: () => dispatch({ type: READ_ALL_STUDENT })
-  }
-}
-
-export default connect(null, mapDispatchToProps)(App);
+export default connect()(App);
 
 

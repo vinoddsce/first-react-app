@@ -3,3 +3,5 @@ export const READ_STUDENT = 'READ_STUDENT';
 export const ADD_STUDENT = 'ADD_STUDENT';
 export const REMOVE_STUDENT = 'ADD_STUDENT';
 export const UPDATE_STUDENT = 'ADD_STUDENT';
+export const FETCHING_STUDENT = 'FETCHING_STUDENT';
+export const ERROR_OCCURED = 'ERROR_OCCURED';

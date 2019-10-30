@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Student from './Student';
 
+
 import { PropTypes } from 'prop-types';
 import { StudentsConsumer } from '../../context/StudentContext';
 import withColor from './withColor';
@@ -10,8 +11,10 @@ import { connect } from 'react-redux';
 class StudentList extends Component {
     constructor(props) {
         super(props);
-        console.log("this.students", this.students);
+        // console.log("this.students", this.students);
     }
+
+    
 
     render() {
         console.log("StudentList --> render()", this.props);
@@ -23,7 +26,8 @@ class StudentList extends Component {
                         return (
                             <div style={{ border: "2px solid green" }}>
                                 <h3><span style={{ padding: '0px 25px', width: '25%' }}>ID</span><span style={{ padding: '0px 25px', width: '25%' }}>Name</span><span style={{ padding: '0px 25px', width: '25%' }}>Course</span><span style={{ padding: '0px 25px', width: '25%' }}>Fees</span></h3>
-                                {
+                                {this.props.isLoading ? <h3>Loading...</h3> :
+
                                     this.props.students.map((std, index) => {
                                         const WithColor = withColor(Student);
                                         const props = {
@@ -47,7 +51,9 @@ class StudentList extends Component {
                                         }
 
                                     })
+
                                 }
+
                             </div>
                         );
                     }
@@ -83,7 +89,8 @@ class StudentList extends Component {
 
 const mapStateToProps = state => {
     return {
-        students: state.students
+        students: state.students,
+        isLoading: state.isLoading
     }
 }
 
