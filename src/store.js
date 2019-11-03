@@ -43,9 +43,10 @@ const reducer = (state = initialState, action) => {
             isLoading: false
         }
     }
+    return state;
 }
 
 
 const store = createStore(reducer, applyMiddleware(thunk));
-
+console.log("Store State Form store.js-> : ", store.getState());
 export default store;

@@ -14,10 +14,10 @@ export const errorWhileStudents = () => {
     }
 }
 
-export const studentsFetchCompleted = (data) => {
+export const studentsFetchCompleted = (students) => {
     return {
         type: READ_ALL_STUDENT,
-        students: data
+        students: students
     }
 }
 
@@ -25,6 +25,7 @@ export const studentsFetchCompleted = (data) => {
 export const fetch_all_students = () => {
     store.dispatch(fetchStudents());
     return (dispatch, getState) => {
+        console.log('Fetching All Kiddos !!!!!');
         return fetch("http://localhost:8000/students", {
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -33,10 +34,10 @@ export const fetch_all_students = () => {
             }
         }).then(
             (response) => {
-                response.json().then(data => {
+                response.json().then(students => {
                     console.log("State: ", getState());
-                    console.log("Data Now From Redux: ", data);
-                    dispatch(studentsFetchCompleted(data));
+                    console.log("Data Now From Redux: ", students);
+                    dispatch(studentsFetchCompleted(students));
                 })
 
             }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 import Student from './Student';
-
-
-import { PropTypes } from 'prop-types';
+import { fetch_all_students } from '../../studentsAction';
 import { StudentsConsumer } from '../../context/StudentContext';
 import withColor from './withColor';
 import { connect } from 'react-redux';
@@ -14,7 +12,10 @@ class StudentList extends Component {
         // console.log("this.students", this.students);
     }
 
-    
+    componentDidMount() {
+        this.props.dispatch(fetch_all_students());
+        // this.props.readAllStudents();
+    }
 
     render() {
         console.log("StudentList --> render()", this.props);

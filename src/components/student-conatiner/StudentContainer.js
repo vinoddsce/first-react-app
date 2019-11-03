@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StudentList from './StudentList';
-import { fetch_all_students } from '../../studentsAction';
+
 import withLoadingSpinner from '../../components/hoc/withLoadingSpinner';
 import {
     BrowserRouter as Router,
@@ -30,10 +30,8 @@ class StudentContainer extends Component {
         this.setState({ data: "loaded" });
     }
 
-    componentDidMount() {
-        this.props.dispatch(fetch_all_students());
-        // this.props.readAllStudents();
-    }
+
+
     render() {
         console.log("StudentContainer --> render()");
         return (

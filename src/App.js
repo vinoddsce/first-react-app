@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import StudentDTO from './common/StudentDTO';
+
 import DepartmentContainer from './components/department-container/DepartmentContainer';
 import StudentContainer from './components/student-conatiner/StudentContainer';
 
@@ -10,6 +10,7 @@ import { DepartmentProvider } from './context/DepartmentContext';
 import { fetch_all_students } from './studentsAction';
 
 import axios from 'axios';
+import StudentDTO from './common/StudentDTO';
 
 import { connect } from 'react-redux';
 import { READ_ALL_STUDENT, READ_STUDENT, ADD_STUDENT, REMOVE_STUDENT, UPDATE_STUDENT } from './actionTypes';
@@ -37,39 +38,12 @@ class App extends Component {
       students: [],
       newStudentAdded: false
     }
-    this.addStudent = this.addStudent.bind(this);
+    
     this.deleteStudent = this.deleteStudent.bind(this);
     this.updateStudent = this.updateStudent.bind(this);
   }
 
-  addStudent(name, course, fees) {
-    console.log("App->addStudent(): ", name, course, fees);
-    var temp = this.state.students;
-    if (name === "" && course === "" && fees === "") {
-      this.setState({
-        students: temp,
-        newStudentAdded: false
-      });
-    } else {
 
-      var std = new StudentDTO(this.state.students.length + 1, name, course, fees);
-      console.log('std', std);
-
-      axios.post('http://localhost:8000/students', std).then(
-        (response) => {
-          console.log("Data: ", response.data);
-          std._id = response.data["_id"];
-          temp.push(std);
-          this.setState({
-            students: temp,
-            newStudentAdded: true
-          })
-        }
-      ).catch(error => {
-        console.log("Error Response: ", error);
-      });
-    }
-  }
 
   updateStudent(std) {
     // var temp = this.state.students.filter((s) => {
@@ -132,23 +106,20 @@ class App extends Component {
             <Link to="/student-list">StudentList</Link>
 
             <hr />
-
-            <DepartmentProvider value={{ addStudent: this.addStudent }}>
-              <StudentsProvider value={{
-                newStudentAdded: this.state.newStudentAdded,
-                deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
-              }}>
-                <Switch>
-                  <Route path="/" exact={true} component={Home} />
-                  <Route path="/home/info" component={Information} />
-                  <Route path="/home" component={Home} />
-                  <Route path="/department" component={DepartmentContainer} />
-                  <Route path="/student-list" component={StudentContainer} />
-                  <Route path="/student/:id" component={StudentDetails} />
-                  <Route path="/*" component={PageNotFound} />
-                </Switch>
-              </StudentsProvider>
-            </DepartmentProvider>
+            <StudentsProvider value={{
+              newStudentAdded: this.state.newStudentAdded,
+              deleteStudent: this.deleteStudent, updateStudent: this.updateStudent
+            }}>
+              <Switch>
+                <Route path="/" exact={true} component={Home} />
+                <Route path="/home/info" component={Information} />
+                <Route path="/home" component={Home} />
+                <Route path="/department" component={DepartmentContainer} />
+                <Route path="/student-list" component={StudentContainer} />
+                <Route path="/student/:id" component={StudentDetails} />
+                <Route path="/*" component={PageNotFound} />
+              </Switch>
+            </StudentsProvider>
 
 
           </div>
